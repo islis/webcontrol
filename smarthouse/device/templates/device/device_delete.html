@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2 align="center">Удалить устройство</h2>
+
+    <form method="post" class='ct-block'>
+        {% csrf_token %}
+        <p>Удалить устройство {{ object }} ?</p>
+        <input type="submit" value="Удалить">
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h3 align="center">Страница входа</h3>
+
+    <form method="post" class='ct-block'>
+        {% csrf_token %}
+        {{form.as_table}}
+        <br>
+        <input type="submit" value="Вход">
+    </form>
+{% endblock %}

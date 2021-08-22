@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h3 align="center">{{object}}</h3>
+<a href="javascript:history.back()">Вернуться назад</a>
+<a href="{% url 'device-edit' object.id %}">Редактировать</a>
+<a href="{% url 'device-delete' object.id %}">Удалить</a>
+<div class="device-block">
+    <table>
+        <tr>
+            <td>ID Устройства</td>
+            <td>{{object.unique_id}}</td>
+        </tr>
+        <tr>
+            <td>Состояние Устройства</td>
+            <td>{{object.state}}</td>
+
+        </tr>
+        <tr>
+            <td>Дополнительная информация</td>
+            <td>{{object.extra_state}}</td>
+        </tr>
+        <tr>
+            <td>Комната Устройства</td>
+            <td>{{object.room}}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

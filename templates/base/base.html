@@ -1,0 +1,52 @@
+﻿<!doctype html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Умный дом</title>
+	<link rel='stylesheet' href="{% static 'css/style.css' %}">
+	<link href="{% static 'icon/crown.ico' %}" rel="shortcut icon" type="image/x-icon"/>
+	<script>
+		document.csrf_token = "{{ csrf_token }}";
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class='logo'>
+		<img src="{% static 'logo/logo.jpg' %}" alt="Логотип">
+	</div>
+
+
+
+	{% if not user.is_anonymous %}
+		<div class='navigate'>
+		<nav>
+			<a href="{% url 'main' %}">Главная</a>
+
+			<a href="{% url 'room:add_room' %}">Добавить комнату</a>
+			<a href="{% url 'device-list' %}">Мои устройства</a>
+			<a href="{% url 'user:logout' %}">Выход</a>
+		</nav>
+		</div>
+	{% endif %}
+
+
+	<div class='content'>
+	{% block content %}
+		{% if user.first_name %}
+		<h2 align="center"> Добро пожаловать, {{user.first_name}} {{user.last_name}}</h2>
+		{% else %}
+		<h2 align="center"> Добро пожаловать, {{user}}</h2>
+		{% endif %}
+		<div class="cards">
+			{% for room in rooms %}
+				<div class="cards__item">
+					<p>{{room}}</p>
+					<a href="{{room.get_absolute_url}}">Перейти</a>
+				</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
+	</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>

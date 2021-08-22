@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2 align="center">Редактировать комнату</h2>
+
+    <form method="post" class='ct-block'>
+        {% csrf_token %}
+        {{form}}
+        <br>
+        <input type="submit" value="Сохранить">
+    </form>
+{% endblock %}

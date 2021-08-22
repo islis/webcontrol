@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h2 align="center">Мои устройства</h2>
+
+
+
+<div class="cards">
+    <div class="cards__item">
+        <p>Добавить устройство</p>
+        <a href="{% url 'add_device' %}">Создать</a>
+    </div>
+    {% for object in object_list %}
+    <div class="cards__item">
+        <p>{{ object }}</p>
+        <a href="{{ object.get_absolute_url }}">Информация</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

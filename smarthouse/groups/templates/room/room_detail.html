@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h3 align="center">{{object}}</h3>
+<a href="{% url 'add_device' %}?room={{ object.id }}">Добавить устройство</a>
+<a href="{% url 'room:edit_room' object.id %}">Редактировать комнату</a>
+<a href="{% url 'room:delete_room' object.id %}">Удалить комнату</a>
+
+<div  class="device-block">
+{% if object.devices %}
+<table>
+    <tr>
+        <td>Устройтво</td>
+        <td>Состояние</td>
+        <td>Переключатель</td>
+    </tr>
+    {% for device in object.devices %}
+    <tr>
+        <td><a href="{{device.get_absolute_url}}">{{device}}</a></td>
+        <td class="device_state-{{ device.unique_id }}">{{device.state}}</td>
+        <td>
+            <label class="switch">
+                <input
+                        type="checkbox"
+                        data-id="{{device.unique_id}}"
+                        class="device-switch"
+                        {% if device.state == 'ON' %}
+                            checked
+                        {% endif %}
+                />
+                <span class="slider round"></span>
+            </label>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}
