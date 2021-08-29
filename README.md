@@ -3,7 +3,7 @@
 - mosquitto
 - postgresql
 
-файл настройек для mosquitto находится в папке smarthouse/config_mqtt.py
+файл настройек для mosquitto находится в папке smarthouse/smarthouse/config_mqtt.py
 
 uid - уникальный id устройтва, создается при добавлении устройства
 
